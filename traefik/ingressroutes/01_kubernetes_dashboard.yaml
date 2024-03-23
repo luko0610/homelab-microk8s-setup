@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kubernetes-dashboard
+spec:
+  entryPoints:
+    - secureweb
+  routes:
+    - match: Host(`cluster.local`) && PathPrefix(`/kubernetes`)
+      kind: Rule
+      services:
+        - name: kubernetes-dashboard
+          port: 80
