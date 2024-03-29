@@ -1,0 +1,12 @@
+kind: IngressRoute
+metadata:
+  name: traefik-dash
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - match: HOST(`traefik.cluster.local`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: api@internal
+      kind: TraefikService
