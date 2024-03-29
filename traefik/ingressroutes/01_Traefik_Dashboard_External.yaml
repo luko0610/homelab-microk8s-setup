@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dash
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - match: HOST(`{{EXTERNAL_SUBDOMAIN}}`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: api@internal
+      kind: TraefikService
