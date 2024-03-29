@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+ name: letsencrypt-issuer-http
+ namespace: whoami
+spec:
+ acme:
+   email: luko0610@gmail.com
+   server: https://acme-v02.api.letsencrypt.org/directory
+   privateKeySecretRef:
+     # if not existing, it will register a new account and stores it
+     name: letsencrypt-issuer-account-key
+   solvers:
+     - http01:
+         ingress:
+           class: traefik
