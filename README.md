@@ -9,10 +9,20 @@ Kubernetes home lab is in a separate subnet behind a mikrotik router. Fritzbox i
 Port 80 is required to be open for letsencrypt issueing with http01 challenge.
 
 ## Roadmap (outstanding work)
+
+### letsencrypt
+
 For now, as letsencrypt issueing uses http-01 challenge we cannot request a wildcard certificate, meaning subdomains routed with traefik cannot use the letsencrypt certificate.
 Therefore the goal is to switch to dns-01 challenge long term. Need to have properly setup a custom DNS Server for the domain for this though.
 
 https://microk8s.io/docs/addon-cert-manager
+
+### Configure BGP with metallb
+I am not quite sure, if it is even possibly get microk8s working with metallb BGP setup as it uses Calico.
+Calico has known limitations and does not provide extension points for metallb and Calico to properly coexist.
+
+Further information here:
+https://metallb.universe.tf/configuration/calico/
 
 ## Warning
 This is a work in progress and not guaranteed to be complete, nor work.
