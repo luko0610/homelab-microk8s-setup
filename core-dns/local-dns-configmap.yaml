@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: local-zone
+  namespace: core-dns
+data:
+  local.zone: |
+    ; Example local zone file
+---
