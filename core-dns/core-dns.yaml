@@ -50,13 +50,8 @@ data:
     .:53 {
         errors
         health
-        kubernetes cluster.local in-addr.arpa ip6.arpa {
-          pods insecure
-          upstream /etc/resolv.conf
-          fallthrough in-addr.arpa ip6.arpa
-        }
+        file /etc/coredns/local.zone local.zone
         prometheus :9153
-        forward . /etc/resolv.conf
         cache 30
         loop
         reload
