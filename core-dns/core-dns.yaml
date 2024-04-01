@@ -2,14 +2,12 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: core-dns
-
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: coredns
   namespace: core-dns
-
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -83,9 +81,15 @@ spec:
           mountPath: /etc/coredns
           readOnly: true
       volumes:
-        - name: config-volume
-          configMap:
-            name: coredns
-            items:
-            - key: Corefile
-              path: Corefile
+      - name: config-volume
+        configMap:
+          name: coredns
+          items:
+          - key: Corefile
+            path: Corefile
+      - name: local-zone
+        configMap:
+          name: local-zone
+          items:
+          - key: local.zone
+            path: local.zone
